@@ -28,16 +28,6 @@ public class Week07Application {
 	@Autowired
 	private CustomerRepository customerRepository;
 
-	@Autowired
-	private OrderRepository orderRepository;
-
-	@Autowired
-	private OrderDetailRepository orderDetailRepository;
-@Autowired
-	private ProductPriceRepository productPriceRepository;
-
-	@Autowired
-	private ProductImageRepository productImageRepository;
 	public static void main(String[] args) {
 
 		SpringApplication.run(Week07Application.class, args);
@@ -73,6 +63,16 @@ public class Week07Application {
 //				employee.setStatus(EmployeeStatus.ACTIVE);
 //
 //				employeeRepository.save(employee);
+//			}
+//
+//			for (int i = 0; i < 200; i++){
+//				Customer customer = new Customer();
+//				Faker faker = new Faker();
+//				customer.setName(faker.name().fullName());
+//				customer.setEmail(faker.lorem().characters(10, 15));
+//				customer.setPhone(faker.phoneNumber().subscriberNumber(10));
+//				customer.setAddress(faker.address().fullAddress());
+//				customerRepository.save(customer);
 //			}
 //        };
 //    }

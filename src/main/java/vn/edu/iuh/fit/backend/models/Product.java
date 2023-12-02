@@ -153,6 +153,7 @@ public class Product {
         this.productPrices.remove(productPrice);
         productPrice.setProduct(null);
     }
+
     @Override
     public String toString() {
         return "Product{" +
