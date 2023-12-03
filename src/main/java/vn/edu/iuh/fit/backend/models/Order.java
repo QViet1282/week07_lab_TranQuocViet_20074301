@@ -77,6 +77,13 @@ public class Order {
         this.orderDetails = orderDetails;
     }
 
+    public void addOrderDetail(OrderDetail orderDetail){
+        this.orderDetails.add(orderDetail);
+    }
+
+    public void removeOrderDetail(OrderDetail orderDetail){
+        this.orderDetails.remove(orderDetail);
+    }
     @Override
     public String toString() {
         return "Order{" +

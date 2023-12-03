@@ -28,15 +28,18 @@ public class Week07Application {
 	@Autowired
 	private CustomerRepository customerRepository;
 
+	@Autowired
+	private OrderRepository orderRepository;
+
 	public static void main(String[] args) {
 
 		SpringApplication.run(Week07Application.class, args);
 	}
 
-//		@Bean
-//	CommandLineRunner commandLineRunner(){
-//
-//        return args -> {
+		@Bean
+	CommandLineRunner commandLineRunner(){
+
+        return args -> {
 //			for (int i = 0; i < 200; i++){
 //				Product product = new Product();
 //				Faker faker = new Faker();
@@ -74,8 +77,16 @@ public class Week07Application {
 //				customer.setAddress(faker.address().fullAddress());
 //				customerRepository.save(customer);
 //			}
-//        };
-//    }
+//			for (int i = 0; i < 200; i++){
+//				Order order = new Order();
+//				Faker faker = new Faker();
+//				order.setOrderDate(LocalDateTime.of(2021, 11, 30, 10, 0));
+//				order.setEmployee(employeeRepository.findById((long) faker.number().numberBetween(1, 200)).get());
+//				order.setCustomer(customerRepository.findById((long) faker.number().numberBetween(1, 200)).get());
+//				orderRepository.save(order);
+//			}
+        };
+    }
 
 
 }
