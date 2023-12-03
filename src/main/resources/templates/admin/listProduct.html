@@ -5,11 +5,14 @@
     <title>Product List</title>
 </head>
 <body>
-<div class="d-flex justify-content-between" style="background-color: bisque">
-    <a th:href="@{/customer/{id}/listProduct(id=${userId})}" class="btn btn-primary">Home</a>
-    <a th:href="@{/customer/{id}/cart(id=${userId})}" class="btn btn-primary">Cart</a>
-</div>
 <h2>Product List</h2>
+<div class="d-flex justify-content-between" style="background-color: bisque">
+    <a th:href="@{/admin/listProduct}" class="btn btn-primary">Product</a>
+    <a th:href="@{/admin/listEmployee}" class="btn btn-primary">Employee</a>
+    <a th:href="@{/admin/listCustomer}" class="btn btn-primary">Customer</a>
+    <a th:href="@{/admin/listOrder}" class="btn btn-primary">Order</a>
+</div>
+<a th:href="@{/admin/listProduct/addProduct}" >Add new product</a>
 <table>
     <thead>
     <tr>
@@ -20,8 +23,6 @@
         <th>Unit</th>
         <th>Status</th>
         <th>Price</th>
-        <th>Action</th>
-
     </tr>
     </thead>
     <tbody>
@@ -36,16 +37,17 @@
         <td th:text="${product.unit}"></td>
         <td th:text="${product.status}"></td>
         <td th:text="${product.getCurrentPrice().get().price}"></td>
-        <td><a th:href="@{/customer/add/{id}(id=${product.product_id})}">
-            <h5>Thêm vào giỏ</h5>
-        </a></td>
+        <td>        <a th:href="@{/admin/listProduct/delete/{id}(id=${product.product_id})}" class="btn btn-danger">Delete</a>
+        </td>
+        <td>        <a th:href="@{/admin/listProduct/edit/{id}(id=${product.product_id})}" class="btn btn-primary">Update</a>
+        </td>
     </tr>
     <div class="d-flex justify-content-center ">
         <div th:fragment="pagination(paginatedList)">
             <ul class="pagination">
                 <li th:each="i : ${#numbers.sequence(0, paginatedList.totalPages - 1)}"
                     th:class="${paginatedList.number == i ? 'active mx-1' : 'mx-1'}">
-                    <a th:attr="href=@{'/customer/'+${userId}+'/listProduct?page=' + ${i+1}}" th:text="${i+1}"></a>
+                    <a th:attr="href=@{'/admin/listProduct?page=' + ${i+1}}" th:text="${i+1}"></a>
                 </li>
             </ul>
         </div>

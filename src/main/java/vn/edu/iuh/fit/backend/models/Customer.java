@@ -24,8 +24,9 @@ public class Customer {
     @Column(name = "address", length = 250, nullable = false)
     private String address;
 
-    @OneToMany(mappedBy = "customer")
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.REMOVE)
     private List<Order> orderList;
+
 
     public Customer() {
     }

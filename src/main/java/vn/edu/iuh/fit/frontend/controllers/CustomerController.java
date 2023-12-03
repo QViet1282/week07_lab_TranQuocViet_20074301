@@ -43,11 +43,9 @@ public class CustomerController {
                        @RequestParam(name = "size", defaultValue = "20") int size, @PathVariable("id") long id){
         PageRequest pageRequest = PageRequest.of(page-1, size);
         Page<Product> products = productRepository.findAllByStatus(ProductStatus.ACTIVE, pageRequest);
-        for (Product product : products) {
-//            List<ProductPrice> productPrices = new ArrayList<>();
-            product.addProductPrice(productPriceRepository.findNearestPrice(product.getProduct_id()).get());
-//            product.ProductPrices(productPrices);
-        }
+//        for (Product product : products) {
+////            product.addProductPrice(productPriceRepository.findTopByProductProductPricesOrderByPrice_date_timeDesc(product.getProduct_id()).get());
+//        }
         model.addAttribute("products", products);
         Page<Product> productPage = productRepository.findAll(pageRequest);
         model.addAttribute("paginatedList", productPage);
@@ -74,7 +72,7 @@ public class CustomerController {
         } else {
             OrderDetail orderDetail = new OrderDetail();
             orderDetail.setProduct(productRepository.findById(id).get());
-            orderDetail.setPrice(productPriceRepository.findNearestPrice(id).get().getPrice());
+            orderDetail.setPrice(productRepository.findById(id).get().getCurrentPrice().get().getPrice());
             orderDetail.setQuantity(1);
             orderDetail.setNote("");
             orderDetails.add(orderDetail);

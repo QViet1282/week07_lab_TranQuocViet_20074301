@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 import vn.edu.iuh.fit.backend.enums.EmployeeStatus;
 
 import java.time.LocalDate;
@@ -28,6 +29,7 @@ public class Employee {
     @Column(name = "dob", nullable = false)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @JsonSerialize(using = LocalDateSerializer.class)
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private LocalDate dob;
     @Column(name = "email", unique = true, length = 150)
     private String email;

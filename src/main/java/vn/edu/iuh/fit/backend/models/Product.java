@@ -3,9 +3,8 @@ package vn.edu.iuh.fit.backend.models;
 import jakarta.persistence.*;
 import vn.edu.iuh.fit.backend.enums.ProductStatus;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.time.LocalDateTime;
+import java.util.*;
 
 @Entity
 @Table(name = "product")
@@ -152,6 +151,11 @@ public class Product {
     public void removeProductPrice(ProductPrice productPrice){
         this.productPrices.remove(productPrice);
         productPrice.setProduct(null);
+    }
+
+    public Optional<ProductPrice> getCurrentPrice(){
+        LocalDateTime now = LocalDateTime.now();
+        return this.productPrices.stream().filter(el -> el.getPrice_date_time().isBefore(now)).max(Comparator.comparing(ProductPrice::getPrice_date_time));
     }
 
     @Override
